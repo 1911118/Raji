@@ -9,7 +9,7 @@ const config = {
     api: {
         baseUrl: window.location.hostname === 'localhost'
             ? 'http://localhost:3000'
-            : 'https://xxxx-xxxx-xxxx.ngrok-free.app', // Replace with your ngrok URL
+            : 'https://slimy-papers-wear.loca.lt',
         login: '/login',
         register: '/register',
         products: '/products',
