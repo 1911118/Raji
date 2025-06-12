@@ -2,11 +2,14 @@
 const config = {
     // For local development
     baseUrl: window.location.hostname === 'localhost' 
-        ? 'http://localhost:5000' 
-        : 'https://yourusername.github.io/rajdelver',
+        ? 'http://localhost:3000' 
+        : 'https://1911118.github.io/Raji',
     
     // API endpoints
     api: {
+        baseUrl: window.location.hostname === 'localhost'
+            ? 'http://localhost:3000'
+            : 'https://xxxx-xxxx-xxxx.ngrok-free.app', // Replace with your ngrok URL
         login: '/login',
         register: '/register',
         products: '/products',
