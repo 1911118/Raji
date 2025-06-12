@@ -12,7 +12,11 @@
     "setup-sheets": "node scripts/google-sheets/setup-sheet.js",
     "scan-db": "node scripts/google-sheets/scan-mongodb.js",
     "test-db": "node scripts/test-connection.js",
-    "test-website": "node scripts/test-website.js"
+    "test-website": "node scripts/test-website.js",
+    "build": "npm run build:clean && npm run build:copy",
+    "build:clean": "rimraf dist",
+    "build:copy": "copyfiles -u 1 \"public/**/*\" dist",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -27,9 +31,12 @@
     "socket.io": "^4.6.1"
   },
   "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "gh-pages": "^6.3.0",
     "jest": "^29.5.0",
     "nodemon": "^2.0.22",
     "playwright": "^1.53.0",
+    "rimraf": "^5.0.10",
     "supertest": "^6.3.3"
   }
 }

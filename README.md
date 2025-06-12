@@ -1,6 +1,6 @@
 # Rajdelver - Grocery Delivery Platform
 
-A full-stack grocery delivery platform built with Node.js, Express, MongoDB, and modern web technologies.
+A full-stack grocery delivery platform with real-time order tracking and management.
 
 ## Features
 
@@ -8,58 +8,42 @@ A full-stack grocery delivery platform built with Node.js, Express, MongoDB, and
 - Shop management interface
 - Delivery agent tracking
 - Real-time order updates
-- Secure authentication
-- Responsive design
+- MongoDB database integration
 
 ## Local Development Setup
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/rajdelver.git
-   cd rajdelver
-   ```
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/rajdelver.git
+cd rajdelver
+```
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+2. Install dependencies:
+```bash
+npm install
+```
 
-3. **Set up MongoDB locally**
-   - Install MongoDB Community Edition
-   - Start MongoDB service
-   - The app will connect to `mongodb://localhost:27017/rajdelver`
+3. Set up MongoDB locally:
+- Install MongoDB Community Edition
+- Start MongoDB service
+- The application will connect to `mongodb://localhost:27017/rajdelver`
 
-4. **Environment Variables**
-   Create a `.env` file in the root directory:
-   ```
-   PORT=5000
-   MONGO_URI=mongodb://localhost:27017/rajdelver
-   JWT_SECRET=your_jwt_secret
-   ```
+4. Create a `.env` file in the root directory:
+```
+MONGO_URI=mongodb://localhost:27017/rajdelver
+JWT_SECRET=your_jwt_secret
+PORT=5000
+```
 
-5. **Initialize the database**
-   ```bash
-   npm run init-db
-   ```
+5. Initialize the database with sample data:
+```bash
+npm run init-db
+```
 
-6. **Start the development server**
-   ```bash
-   npm start
-   ```
-
-## Test Accounts
-
-- **Customer**
-  - Email: customer@example.com
-  - Password: customer123
-
-- **Shop Owner**
-  - Email: shop@example.com
-  - Password: shop123
-
-- **Delivery Agent**
-  - Email: delivery@example.com
-  - Password: delivery123
+6. Start the development server:
+```bash
+npm start
+```
 
 ## Project Structure
 
@@ -68,9 +52,8 @@ rajdelver/
 ├── models/          # MongoDB models
 ├── public/          # Frontend static files
 ├── scripts/         # Utility scripts
-├── server.js        # Main application file
-├── package.json     # Project dependencies
-└── README.md        # This file
+├── server.js        # Main server file
+└── package.json     # Project configuration
 ```
 
 ## API Endpoints
@@ -81,7 +64,7 @@ rajdelver/
 
 ### Products
 - GET `/products` - List all products
-- POST `/products` - Create product (Shop only)
+- POST `/products` - Add new product (Shop only)
 - PUT `/products/:id` - Update product (Shop only)
 - DELETE `/products/:id` - Delete product (Shop only)
 
@@ -91,38 +74,26 @@ rajdelver/
 - PUT `/orders/:id/status` - Update order status
 - GET `/admin/orders/export` - Export orders to CSV (Shop only)
 
-## Development
+## Real-time Events
 
-### Running Tests
-```bash
-npm run test-website  # Run full website tests
-npm run test-db       # Test database connection
-```
+- `newOrder` - Emitted when a new order is placed
+- `orderAccepted` - Emitted when an order is accepted
+- `statusUpdate` - Emitted when order status changes
 
-### Database Management
-```bash
-npm run init-db      # Initialize database with sample data
-npm run scan-db      # Scan database contents
-```
+## Security
 
-## Deployment
+- JWT-based authentication
+- Password hashing with bcrypt
+- Role-based access control
+- Input validation and sanitization
 
-### GitHub Pages Setup
-1. Create a new repository on GitHub
-2. Push your code:
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git remote add origin https://github.com/yourusername/rajdelver.git
-   git push -u origin main
-   ```
-3. Enable GitHub Pages in repository settings
+## Contributing
 
-### Important Notes
-- Keep MongoDB running locally for development
-- Never commit sensitive data or environment variables
-- Update the README when adding new features
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
 ## License
 
