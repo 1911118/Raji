@@ -24,5 +24,12 @@ const config = {
     }
 };
 
+// Log configuration for debugging
+console.log('Current configuration:', {
+    hostname: window.location.hostname,
+    apiBaseUrl: config.apiBaseUrl,
+    socketUrl: config.socketUrl
+});
+
 // Export the configuration
 export default config; 
