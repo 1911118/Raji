@@ -4,6 +4,9 @@ const config = {
     baseUrl: window.location.hostname === 'localhost' 
         ? 'http://localhost:3000' 
         : 'https://1911118.github.io/Raji',
+    apiBaseUrl: window.location.hostname === 'localhost'
+        ? 'http://localhost:3000'
+        : 'https://brave-doodles-smell.loca.lt',
     
     // API endpoints
     api: {
@@ -19,4 +22,4 @@ const config = {
 };
 
 // Export the configuration
-window.appConfig = config; 
+export default config; 
