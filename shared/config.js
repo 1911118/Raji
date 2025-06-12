@@ -6,10 +6,10 @@ const config = {
         : 'https://1911118.github.io/Raji',
     apiBaseUrl: window.location.hostname === 'localhost'
         ? 'http://localhost:3000'
-        : 'https://vast-onions-bathe.loca.lt',
+        : 'https://chatty-books-sing.loca.lt',
     socketUrl: window.location.hostname === 'localhost'
         ? 'http://localhost:3000'
-        : 'https://vast-onions-bathe.loca.lt',
+        : 'https://chatty-books-sing.loca.lt',
     
     // API endpoints
     api: {

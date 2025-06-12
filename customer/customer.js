@@ -2,17 +2,24 @@ import config from '../shared/config.js';
 
 // Initialize Socket.io with the configured URL
 const socket = io(config.socketUrl, {
-    transports: ['websocket'],
-    withCredentials: true
+    transports: ['websocket', 'polling'],
+    path: '/socket.io/',
+    reconnectionAttempts: 5,
+    reconnectionDelay: 1000,
+    timeout: 60000
 });
 
 // Handle socket connection
 socket.on('connect', () => {
-    console.log('Connected to server');
+    console.log('Socket connected successfully');
 });
 
 socket.on('connect_error', (error) => {
     console.error('Socket connection error:', error);
+});
+
+socket.on('disconnect', (reason) => {
+    console.log('Socket disconnected:', reason);
 });
 
 // Handle login form submission
