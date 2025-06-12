@@ -1,88 +1,87 @@
 # Rajdelver - Grocery Delivery Platform
 
-A full-stack grocery delivery web application with real-time order tracking and separate dashboards for customers, shop owners, and delivery agents.
+A full-stack grocery delivery platform built with Node.js, Express, MongoDB, and modern web technologies.
 
 ## Features
 
-- User authentication with role-based access (Customer, Shop, Delivery)
-- Real-time order tracking using Socket.IO
-- Product management for shop owners
-- Order management and status updates
-- CSV export for order history
-- Mobile-friendly responsive design
+- Customer ordering system
+- Shop management interface
+- Delivery agent tracking
+- Real-time order updates
+- Secure authentication
+- Responsive design
 
-## Tech Stack
+## Local Development Setup
 
-- Backend: Node.js + Express
-- Database: MongoDB
-- Real-time: Socket.IO
-- Frontend: HTML, CSS, JavaScript
-- Authentication: JWT
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/rajdelver.git
+   cd rajdelver
+   ```
 
-## Prerequisites
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-- Node.js (v14 or higher)
-- MongoDB (local or Atlas)
-- npm or yarn
+3. **Set up MongoDB locally**
+   - Install MongoDB Community Edition
+   - Start MongoDB service
+   - The app will connect to `mongodb://localhost:27017/rajdelver`
 
-## Setup
+4. **Environment Variables**
+   Create a `.env` file in the root directory:
+   ```
+   PORT=5000
+   MONGO_URI=mongodb://localhost:27017/rajdelver
+   JWT_SECRET=your_jwt_secret
+   ```
 
-1. Clone the repository:
-```bash
-git clone <repository-url>
-cd rajdelver
+5. **Initialize the database**
+   ```bash
+   npm run init-db
+   ```
+
+6. **Start the development server**
+   ```bash
+   npm start
+   ```
+
+## Test Accounts
+
+- **Customer**
+  - Email: customer@example.com
+  - Password: customer123
+
+- **Shop Owner**
+  - Email: shop@example.com
+  - Password: shop123
+
+- **Delivery Agent**
+  - Email: delivery@example.com
+  - Password: delivery123
+
+## Project Structure
+
 ```
-
-2. Install dependencies:
-```bash
-npm install
+rajdelver/
+├── models/          # MongoDB models
+├── public/          # Frontend static files
+├── scripts/         # Utility scripts
+├── server.js        # Main application file
+├── package.json     # Project dependencies
+└── README.md        # This file
 ```
-
-3. Create a `.env` file in the root directory with the following variables:
-```
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-PORT=3000
-```
-
-4. Start the server:
-```bash
-npm start
-```
-
-The application will be available at `http://localhost:3000`
-
-## Usage
-
-### Customer Portal
-- Access at `http://localhost:3000/customer`
-- Register/Login as a customer
-- Browse products and add to cart
-- Place orders with 6-digit pin code
-- Track order status in real-time
-
-### Shop Dashboard
-- Access at `http://localhost:3000/shop`
-- Register/Login as a shop owner
-- Manage products (add, update, delete)
-- View and manage orders
-- Export order history to CSV
-
-### Delivery Dashboard
-- Access at `http://localhost:3000/delivery`
-- Register/Login as a delivery agent
-- View assigned orders
-- Update order status (on-the-way, delivered)
 
 ## API Endpoints
 
 ### Authentication
-- POST `/register` - Register new user
 - POST `/login` - User login
+- POST `/register` - User registration
 
 ### Products
-- GET `/products` - Get all products
-- POST `/products` - Add new product (Shop only)
+- GET `/products` - List all products
+- POST `/products` - Create product (Shop only)
 - PUT `/products/:id` - Update product (Shop only)
 - DELETE `/products/:id` - Delete product (Shop only)
 
@@ -92,26 +91,38 @@ The application will be available at `http://localhost:3000`
 - PUT `/orders/:id/status` - Update order status
 - GET `/admin/orders/export` - Export orders to CSV (Shop only)
 
-## Real-time Events
+## Development
 
-- `newOrder` - Emitted when a new order is placed
-- `orderAccepted` - Emitted when an order is accepted
-- `statusUpdate` - Emitted when order status changes
+### Running Tests
+```bash
+npm run test-website  # Run full website tests
+npm run test-db       # Test database connection
+```
 
-## Security
+### Database Management
+```bash
+npm run init-db      # Initialize database with sample data
+npm run scan-db      # Scan database contents
+```
 
-- JWT-based authentication
-- Password hashing with bcrypt
-- Role-based access control
-- Input validation and sanitization
+## Deployment
 
-## Contributing
+### GitHub Pages Setup
+1. Create a new repository on GitHub
+2. Push your code:
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git remote add origin https://github.com/yourusername/rajdelver.git
+   git push -u origin main
+   ```
+3. Enable GitHub Pages in repository settings
 
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
+### Important Notes
+- Keep MongoDB running locally for development
+- Never commit sensitive data or environment variables
+- Update the README when adding new features
 
 ## License
 
