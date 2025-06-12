@@ -13,12 +13,13 @@
     "scan-db": "node scripts/google-sheets/scan-mongodb.js",
     "test-db": "node scripts/test-connection.js",
     "test-website": "node scripts/test-website.js",
+    "test-site": "node scripts/test-site.js",
     "build": "npm run build:clean && npm run build:copy && npm run build:nojekyll",
     "build:clean": "rimraf dist",
     "build:copy": "copyfiles -u 1 \"public/**/*\" dist",
     "build:nojekyll": "echo. > dist/.nojekyll",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist -b main"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

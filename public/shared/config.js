@@ -2,11 +2,17 @@
 const config = {
     // For local development
     baseUrl: window.location.hostname === 'localhost' 
-        ? 'http://localhost:5000' 
-        : 'https://yourusername.github.io/rajdelver',
+        ? 'http://localhost:3000' 
+        : 'https://1911118.github.io/Raji',
+    apiBaseUrl: window.location.hostname === 'localhost'
+        ? 'http://localhost:3000'
+        : 'https://brave-doodles-smell.loca.lt',
     
     // API endpoints
     api: {
+        baseUrl: window.location.hostname === 'localhost'
+            ? 'http://localhost:3000'
+            : 'https://slimy-papers-wear.loca.lt',
         login: '/login',
         register: '/register',
         products: '/products',
@@ -16,4 +22,4 @@ const config = {
 };
 
 // Export the configuration
-window.appConfig = config; 
+export default config; 
