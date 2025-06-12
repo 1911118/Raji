@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rajdelver - Cart</title>
+  <link rel="stylesheet" href="../shared/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Your Cart</h1>
+    <div id="cart-items"></div>
+    <div id="cart-summary">
+      <h3>Total: $<span id="total">0</span></h3>
+    </div>
+    <button onclick="goBack()">Back to Products</button>
+    <button onclick="placeOrder()">Place Order</button>
+  </div>
+  <script src="customer.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cartItems = document.getElementById('cart-items');
+      const total = document.getElementById('total');
+      
+      if (cart.length === 0) {
+        cartItems.innerHTML = '<p>Your cart is empty</p>';
+        return;
+      }
+      
+      let totalAmount = 0;
+      cartItems.innerHTML = cart.map(item => {
+        const itemTotal = item.price * item.quantity;
+        totalAmount += itemTotal;
+        return `
+          <div class="product-card">
+            <div class="product-info">
+              <h3>${item.name}</h3>
+              <p>Price: $${item.price}</p>
+              <p>Quantity: ${item.quantity}</p>
+              <p>Total: $${itemTotal}</p>
+            </div>
+            <div class="product-actions">
+              <button onclick="updateQuantity('${item.productId}', ${item.quantity - 1})">-</button>
+              <button onclick="updateQuantity('${item.productId}', ${item.quantity + 1})">+</button>
+              <button onclick="removeItem('${item.productId}')">Remove</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+      
+      total.textContent = totalAmount.toFixed(2);
+    });
+
+    function updateQuantity(productId, newQuantity) {
+      if (newQuantity < 1) {
+        removeItem(productId);
+        return;
+      }
+      const item = cart.find(item => item.productId === productId);
+      if (item) {
+        item.quantity = newQuantity;
+        location.reload();
+      }
+    }
+
+    function removeItem(productId) {
+      cart = cart.filter(item => item.productId !== productId);
+      location.reload();
+    }
+
+    function goBack() {
+      window.location.href = 'index.html';
+    }
+
+    function placeOrder() {
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html> 
