@@ -6,7 +6,10 @@ const config = {
         : 'https://1911118.github.io/Raji',
     apiBaseUrl: window.location.hostname === 'localhost'
         ? 'http://localhost:3000'
-        : 'https://brave-doodles-smell.loca.lt',
+        : 'https://fruity-eels-join.loca.lt',
+    socketUrl: window.location.hostname === 'localhost'
+        ? 'http://localhost:3000'
+        : 'https://fruity-eels-join.loca.lt',
     
     // API endpoints
     api: {

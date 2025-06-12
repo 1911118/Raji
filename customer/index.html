@@ -1,34 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rajdelver - Customer</title>
-  <link rel="stylesheet" href="../shared/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Portal - Rajdelver</title>
+    <link rel="stylesheet" href="../shared/styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Rajdelver - Customer Portal</h1>
-    <div id="auth">
-      <input type="email" id="email" placeholder="Email">
-      <input type="password" id="password" placeholder="Password">
-      <input type="text" id="name" placeholder="Name">
-      <input type="text" id="pinCode" placeholder="Pin Code">
-      <button onclick="register()">Register</button>
-      <button onclick="login()">Login</button>
+    <div class="container">
+        <h1>Customer Login</h1>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="register.html">Register here</a></p>
     </div>
-    <div id="products" style="display: none;">
-      <h2>Products</h2>
-      <div id="product-list"></div>
-      <button onclick="viewCart()">View Cart</button>
-    </div>
-    <div id="order-form" style="display: none;">
-      <h2>Place Order</h2>
-      <input type="text" id="orderPin" placeholder="Enter 6-digit Pin Code">
-      <button onclick="placeOrder()">Place Order</button>
-    </div>
-  </div>
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="customer.js"></script>
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+    <script type="module" src="customer.js"></script>
 </body>
 </html> 
