@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rajdelver - Order Status</title>
+  <link rel="stylesheet" href="../shared/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Order Status</h1>
+    <div id="order-list"></div>
+    <button onclick="goBack()">Back to Products</button>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="customer.js"></script>
+  <script>
+    async function loadOrders() {
+      try {
+        const response = await fetch(`/orders/customer/${localStorage.getItem('userId')}`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const orders = await response.json();
+        const orderList = document.getElementById('order-list');
+        
+        if (orders.length === 0) {
+          orderList.innerHTML = '<p>No orders found</p>';
+          return;
+        }
+        
+        orderList.innerHTML = orders.map(o => `
+          <div class="product-card">
+            <div class="product-info">
+              <h3>Order ID: ${o._id}</h3>
+              <p>Status: <span class="status-badge status-${o.status}">${o.status}</span></p>
+              <p>Pin Code: ${o.customerPin}</p>
+              <p>Created: ${new Date(o.createdAt).toLocaleString()}</p>
+              <h4>Products:</h4>
+              <ul>
+                ${o.products.map(p => `
+                  <li>${p.productId.name} - Quantity: ${p.quantity}</li>
+                `).join('')}
+              </ul>
+            </div>
+          </div>
+        `).join('');
+      } catch (error) {
+        alert('Failed to load orders: ' + error.message);
+      }
+    }
+
+    function goBack() {
+      window.location.href = 'index.html';
+    }
+
+    document.addEventListener('DOMContentLoaded', loadOrders);
+
+    socket.on('orderAccepted', (order) => {
+      alert(`Order ${order._id} has been accepted!`);
+      loadOrders();
+    });
+
+    socket.on('statusUpdate', (order) => {
+      alert(`Order ${order._id} status updated to: ${order.status}`);
+      loadOrders();
+    });
+  </script>
+</body>
+</html> 
